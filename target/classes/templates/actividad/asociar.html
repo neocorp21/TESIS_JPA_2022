@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layouts/cuerpo :: cabecera">
+</head>
+<body>
+	<div class="container-scroller">
+		<div th:replace="layouts/cuerpo ::parte1"></div>
+		<!-- parte1 -->
+
+		<div class="container-fluid page-body-wrapper">
+			<div th:replace="layouts/cuerpo :: parte2"></div>
+
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<h2>
+						Actividad del equipo :<span th:text=${titulo}></span>
+					</h2>
+					<form>
+
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="inputEmail4">Nombre</label> <input type="email"
+									class="form-control" id="inputEmail4">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputPassword4">Fecha Inicio</label> <input
+									type="date" class="form-control" id="inputPassword4">
+							</div>
+
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Fecha Fecha fin</label> <input
+									type="date" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+
+
+
+							<button type="submit" class="btn btn-primary">Agregar</button>
+						</div>
+					</form>
+					<br>
+					<table class="table">
+
+						<thead class="thead-dark  ">
+							<th>Actividad</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
+							<th>Estado</th>
+
+							<th></th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr>
+
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+			</div>
+		</div>
+		<!-- container-fluid page-body-wrapper -->
+
+
+
+		<div th:replace="layouts/cuerpo :: libreria"></div>
+		<script type="text/javascript" th:src="@{/formularios/.js}"></script>
+</body>

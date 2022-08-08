@@ -1,0 +1,47 @@
+package com.example.vladimir.repositorio.impl;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.vladimir.entidades.Cliente;
+import com.example.vladimir.interfaces.InterfacesSimple;
+import com.example.vladimir.repositorio.ICliente;
+
+ 
+ 
+
+@Service
+public class ClienteServicioImp implements InterfacesSimple<Cliente> {
+@Autowired
+private ICliente DAO;
+
+	@Override
+	public List<Cliente> obtenerLista() {
+		return (List<Cliente>)DAO.findAll();
+	 
+	}
+	
+	@Override
+	public void guardar(Cliente obj) {
+		DAO.save(obj);
+		
+	}
+
+		
+	@Override
+	public void eliminar(Long id) {
+		DAO.deleteById(id);
+	 }
+
+	 
+ 
+	 
+
+ 
+	
+	
+	 
+}

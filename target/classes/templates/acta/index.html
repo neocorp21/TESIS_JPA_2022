@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layouts/cuerpo :: cabecera">
+</head>
+<body>
+	<div class="container-scroller">
+		<div th:replace="layouts/cuerpo ::parte1"></div>
+		<!-- parte1 -->
+
+		<div class="container-fluid page-body-wrapper">
+			<div th:replace="layouts/cuerpo :: parte2"></div>
+
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+
+						<div class="col-md-12  ">
+
+							<h1 class="text-center text-danger" th:text=${titulo}></h1>
+
+						</div>
+						<div class="col-md-12 grid-margin stretch-card">
+							<br>
+							<div class="row">
+								<div class="col-12">
+									<button type="button" class="btn btn-dark agregar"
+										data-toggle="modal" data-target="#Formulario">
+										<i class="fas fa-plus-square"></i> Registro
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Boton  -->
+
+						<table class="table">
+
+							<thead class="thead-dark  ">
+								<th>IdActa</th>
+								<th>IdProyecto</th>
+								<th>Proyecto</th>
+								<th>Responsable</th>
+								<th>Cliente</th>
+								<th></th>
+								<th></th>
+
+							</thead>
+							<tbody>
+								<tr th:each="item:${lista}">
+									<td th:text="${item.id}"></td>
+									<td th:text="${item.id_proyecto.id}"></td>
+									<td th:text="${item.id_proyecto.nombre}"></td>
+
+									<td th:text="${item.id_responsable.nombre}"></td>
+									<td th:text="${item.id_cliente.nombre}"></td>
+
+									<td><a class="btn btn-warning AprobarProyecto" th:id="${item.id}"
+										th:id_proyecto="${item.id_proyecto.id}"
+										th:id_responsable="${item.id_responsable.id}"
+										th:id_cliente="${item.id_cliente.id}"> <i
+											class="far fa-edit"></i> Ver Proyecto
+									</a></td>
+
+									<td><a class="btn btn-danger"
+										th:href="@{/Acta/eliminar/}+${item.id}"
+										onclick="return confirm(' Desea Eliminar ? ')"><i
+											class="fas fa-trash-alt"></i> Eliminar</a></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+						<!-- Fin Contenido  -->
+
+
+						<!-- Modal -->
+
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="formulario" aria-hidden="true">
+							<div class="modal-dialog">
+
+								<form th:action="@{/Acta/formulario}" th:object="${entidad}"
+									method="post">
+									<input type="text" th:field="*{id}" /> <input type="text"
+										th:field="*{id_proyecto}" /> <input type="text"
+										th:field="*{id_responsable}" /> <input type="text"
+										th:field="*{id_cliente}" />
+
+									<div class="modal-content">
+										<div class="modal-header ">
+											<h3 class="modal-title text-danger  ">
+												<i class="fa fa-cube"> <span>Crear acta</span>
+												</i>
+											</h3>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-12"></div>
+
+
+
+											</div>
+										</div>
+										<div class="modal-footer">
+
+											<button type="submit" class="btn btn-dark">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-danger"
+												data-dismiss="modal">
+												<i class="fas fa-reply-all"></i> Cancelar
+											</button>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+					<!-- Fin Modal -->
+
+
+					<!-- Modal -->
+
+					<div class="modal fade" id="Formulario" tabindex="-1"
+						aria-labelledby="formulario" aria-hidden="true">
+						<div class="modal-dialog">
+
+							<form th:action="@{/Acta/formularioAgregar}"
+								th:object="${entidad}" method="post">
+
+
+								<div class="modal-content">
+									<div class="modal-header ">
+										<h3 class="modal-title text-danger  ">
+											<i class="fa fa-cube"> <span>Aprobar Proyecto ?</span>
+											</i>
+										</h3>
+
+
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<label>Proyecto:</label> <select class="form-control"
+												th:field="*{id_proyecto.id}" required="required">
+												<option value="">Seleccione una opción</option>
+												<option th:each="item : ${listaProyecto}"
+													th:value="${item.id}" th:text="${item.nombre}"></option>
+											</select> <label>responsable:</label> <select class="form-control"
+												th:field="*{id_responsable.id}" required="required">
+												<option value="">Seleccione una opción</option>
+												<option th:each="item : ${listaResponsable}"
+													th:value="${item.id}" th:text="${item.nombre}"></option>
+											</select> <label>Cliente:</label> <select class="form-control"
+												th:field="*{id_cliente.id}" required="required">
+												<option value="">Seleccione una opción</option>
+												<option th:each="item : ${listaCliente}"
+													th:value="${item.id}" th:text="${item.nombre}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="modal-footer">
+
+										<button type="submit" class="btn btn-dark">
+											<i class="fas fa-save"></i> Guardar
+										</button>
+										<button type="button" class="btn btn-danger"
+											data-dismiss="modal">
+											<i class="fas fa-reply-all"></i> Cancelar
+										</button>
+									</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Fin Modal -->
+
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<!-- container-fluid page-body-wrapper -->
+
+
+
+	<div th:replace="layouts/cuerpo :: libreria"></div>
+	<script type="text/javascript" th:src="@{/formularios/acta.js}"></script>
+</body>

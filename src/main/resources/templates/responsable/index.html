@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layouts/cuerpo :: cabecera">
+</head>
+<body>
+	<div class="container-scroller">
+		<div th:replace="layouts/cuerpo ::parte1"></div>
+		<!-- parte1 -->
+
+		<div class="container-fluid page-body-wrapper">
+			<div th:replace="layouts/cuerpo :: parte2"></div>
+
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+
+						<div class="col-md-12  ">
+
+							<h1 class="text-center text-danger" th:text=${titulo}></h1>
+
+						</div>
+						<div class="col-md-12 grid-margin stretch-card">
+							<br>
+							<div class="row">
+								<div class="col-12">
+									<button type="button" class="btn btn-dark agregar"
+										data-toggle="modal" data-target="#exampleModal">
+										<i class="fas fa-plus-square"></i> Registro
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Boton  -->
+
+						<table class="table">
+
+							<thead class="thead-dark  ">
+								<th>Id</th>
+								<th>Cargo</th>
+								<th>Nombre</th>
+								<th>Paterno</th>
+								<th>Materno</th>
+								<th></th>
+								<th></th>
+							</thead>
+							<tbody>
+								<tr th:each="item:${lista}">
+									<td th:text="${item.id}"></td>
+									<td th:text="${item.id_cargo.nombre}"></td>
+									<td th:text="${item.nombre}"></td>
+									<td th:text="${item.apellidomaterno}"></td>
+									<td th:text="${item.apellidopaterno}"></td>
+
+									<td><a class="btn btn-warning editar" 
+									th:id="${item.id}"
+										th:param1="${item.nombre}"
+										th:param2="${item.apellidopaterno}"
+										th:param3="${item.apellidomaterno}"
+										th:param4="${item.id_cargo}"
+										>
+										
+										
+										
+										<i class="far fa-edit"></i>
+											Modificar</a></td>
+
+									<td><a class="btn btn-danger"
+										th:href="@{/Responsable/eliminar/}+${item.id}"
+										onclick="return confirm(' Desea Eliminar ? ')"><i
+											class="fas fa-trash-alt"></i> Eliminar</a></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+						<!-- Fin Contenido  -->
+
+
+						<!-- Modal -->
+
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="formulario" aria-hidden="true">
+							<div class="modal-dialog">
+
+								<form th:action="@{/Responsable/formulario}" th:object="${entidad}"
+									method="post">
+									<input type="hidden" th:field="*{id}" />
+									<div class="modal-content">
+										<div class="modal-header ">
+											<h3 class="modal-title text-danger  " id="formulario">
+												<i class="fa fa-cube"> <span>Titulo CAMBIANTE</span>
+												</i>
+											</h3>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+											<div class="col-12">
+													<label>Selecciona Cargo :</label> <select
+														class="form-control" th:field="*{id_cargo}">
+													 
+														<option th:each="item : ${listaCargo}" th:value="${item.id}"
+															th:text="${item.nombre}"></option>
+													</select>
+												</div>
+												
+												<div class="col-12">
+													<label>Ingrese nombre : </label> <input type="text"
+														class="form-control" th:field="*{nombre}" />
+												</div>
+												<div class="col-12">
+													<label>Ingrese Apellido Paterno : </label> <input type="text"
+														class="form-control" th:field="*{apellidopaterno}" />
+												</div>
+												<div class="col-12">
+													<label>Ingrese Apellido Materno : </label> <input type="text"
+														class="form-control" th:field="*{apellidomaterno}" />
+												</div>
+
+											</div>
+										</div>
+										<div class="modal-footer">
+
+											<button type="submit" class="btn btn-dark">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-danger"
+												data-dismiss="modal">
+												<i class="fas fa-reply-all"></i> Cancelar
+											</button>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+					<!-- Fin Modal -->
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- container-fluid page-body-wrapper -->
+
+
+
+	<div th:replace="layouts/cuerpo :: libreria"></div>
+	<script type="text/javascript" th:src="@{/formularios/personal.js}"></script>
+</body>

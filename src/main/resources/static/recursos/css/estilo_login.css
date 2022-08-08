@@ -1,0 +1,42 @@
+:root {
+  --colorTitulo: #0a58ca;
+  --inputText: var(--colorTitulo); /* ON */
+  --inputTextOFF: #adadad;
+}
+.titulo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  padding-top: 25px;
+  color: var(--colorTitulo);
+}
+body {
+  height: 100%;
+  background-repeat: no-repeat;
+  background: url(fondo.jpg) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+.cuadro {
+  max-width: 450px;
+  background-color: white;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  border-radius: 4%;
+  text-align: center;
+  box-shadow: 25px 25px 25px #000000;
+}
+
+.linea {
+  border-bottom: 3px solid #000000;
+  padding-bottom: 3px;
+}
+.margen {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.logo {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
